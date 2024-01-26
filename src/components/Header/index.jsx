@@ -1,4 +1,4 @@
-import { Container, Wrapper, BuscarInputContainer, Input, Row, Menu, MenuRight, UserPicture, FlagPicture} from './styles';
+import {Container, Wrapper, BuscarInputContainer, Input, Row, Menu, MenuRight, UserPicture, FlagPicture} from './styles';
 import CustomButton from '../Button/index'
 import logo from '../../assets/logo-dio.png'
 import brazil from '../../assets/brazil-flag.png'

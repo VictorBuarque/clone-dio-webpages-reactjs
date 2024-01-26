@@ -1,12 +1,14 @@
 import styled from 'styled-components';
+
 export const Container = styled.div`
     width:100%;
     max-width:80%;
-    height:47px;
+    height:48px;
     display:flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0 auto;
+    self-align: center;
+   
 `
 export const Row = styled.div`
     display: flex;
@@ -27,12 +29,13 @@ export const Wrapper = styled.div`
     align-items: center;
 `
 export const BuscarInputContainer = styled.div`
-    width:75px;
+    width:100px;
     height: 30px;
     background-color: #2d2d37;
     border-radius: 8px;
-    padding: 2px 5px;
+    gap: 5px;
     margin: 0 12px;
+    align-items: center;
 `
 export const Menu = styled.a`
     font-family: "Helvetica Neue"
@@ -53,7 +56,6 @@ export const MenuRight = styled.a`
     margin:0 12px;
     text-decoration: none;
     padding: 2px;
-    
 `
 export const UserPicture = styled.img`
     width: 32px;
@@ -72,5 +74,8 @@ export const Input = styled.input`
     flex: 1;
     border: 0;
     color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+    self-align: center;
 `
 
