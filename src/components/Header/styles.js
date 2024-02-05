@@ -8,7 +8,7 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     self-align: center;
-   
+    background-color: #000;
 `
 export const Row = styled.div`
     display: flex;
@@ -21,7 +21,7 @@ export const Column = styled.div`
     align-items: center;
 `
 export const Wrapper = styled.div`
-    background-color: #151515;
+    background-color: #000;
     width: 100%;
     height: 47px;
     display: flex;
