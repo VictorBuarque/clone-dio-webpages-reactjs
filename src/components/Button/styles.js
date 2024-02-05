@@ -3,6 +3,7 @@ export const ButtonContainer = styled.button`
     background: transparent;
     border-radius: 8px;
     position: relative;
+    backgroud: #5656;
     color: #FFFFFF;
     padding: 2px 12px;
     min-width: 120px;
@@ -11,18 +12,26 @@ export const ButtonContainer = styled.button`
     margin: 5px;
 
     &:hover{
-        background: #7F28B5;
+        opacity:0.6;
+        cursor: pointer;
     }
+
+    
 
     ${({variant})=>variant !== "primary" && css`
         min-width:167px;
         height: 33px;
-        background: #7F28B5;
-
+        background: #e41050;
+        color: #FFFFFF;
+        border-radius:22px;
+        &:hover{
+            opacity:0.6;
+            cursor: pointer;
+        }
         &::after{
-            content: '',
+            content: '';
             position: absolute;
-            border: 1px solid #7F28B5;
+        //    border: 1px solid #e41050;
             top: -5px;
             left: -6px;
             width: calc(100% + 10px);
