@@ -22,7 +22,7 @@ const Header = ()=> {
                         <UserPicture src="https://avatars.githubusercontent.com/u/114040791?s=400&u=469e400f38ea7024ac51746802037465d95f4244&v=4"/>
                         <MenuRight href="#">Home</MenuRight>
                         <CustomButton title="Entrar"></CustomButton>
-                        <CustomButton title="Cadastrar" variant="secondary"></CustomButton>
+                        <CustomButton title="Cadastrar" variant="primary"></CustomButton>
                         <FlagPicture src={brazil}/>
                         <FlagPicture src={eua}/>
                         <FlagPicture src={spain}/>
