@@ -11,9 +11,11 @@ const Home = () => {
         <Header/>
             <Container>
                 <div>
-                    <Title><TitleHighLight>
-                        Implemente <br />
-                    </TitleHighLight>
+                    <Title>
+                        <TitleHighLight>
+                        Implemente 
+                        <br />
+                        </TitleHighLight>
                         o seu futuro global agora!
                     </Title>
                     <TextContent>
