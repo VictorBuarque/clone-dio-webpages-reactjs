@@ -1,5 +1,5 @@
-import React from "react";
 import {MdEmail, MdLock} from 'react-icons/md';
+
 import CustomButton from "../../components/Button/index";
 
 import { Header } from "../../components/Header/index";
@@ -15,8 +15,13 @@ import {
   ForgotText,
   CreateText,
 } from "./styles";
-
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleClickSignIn = () => {
+    navigate("/feed");
+  };
   return (
     <>
       <Header />
@@ -35,7 +40,7 @@ const Login = () => {
               <Input placeholder="Email" type="email" leftIcon={<MdEmail/>} />
               <Input placeholder="Senha" type="password" leftIcon={<MdLock/>} />
             </form>
-            <CustomButton title="Entrar" variant="secondary" />
+            <CustomButton title="Entrar" variant="secondary" onClick={handleClickSignIn} />
             <Row>
               <ForgotText>Esqueceu a Senha?</ForgotText>
               <CreateText>Criar conta</CreateText>
