@@ -1,7 +1,7 @@
-# Login Page of DIO
+# Clone of DIO.me Webpages
 
-This is a clone project of DIO web page. 
-Incomplete Yet!
+This is a clone project of DIO web page, using ReactJS, ViteJS and Styled Components.
+Have 3 pages builded in this project: homepage, login page and feed page.
 
 
 # React + Vite
