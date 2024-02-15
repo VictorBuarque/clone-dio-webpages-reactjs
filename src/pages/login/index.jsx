@@ -1,4 +1,4 @@
-import {MdEmail, MdLock} from 'react-icons/md';
+import { MdEmail, MdLock } from "react-icons/md";
 
 import CustomButton from "../../components/Button/index";
 
@@ -15,13 +15,40 @@ import {
   ForgotText,
   CreateText,
 } from "./styles";
+
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup" //validation
+import * as yup from "yup"
+
+
+const schema = yup
+  .object({
+    email: yup.string().email('E-mail Invalido').required('Campo Invalido'),
+    password: yup.string().min(6,'Senha invalida, minimo 7 caracteres').required('Campo Invalido'),
+  })
+  .required()
+
 const Login = () => {
   const navigate = useNavigate();
-
   const handleClickSignIn = () => {
     navigate("/feed");
   };
+
+  const {
+    control,
+    handleSubmit,
+    // watch,
+    formState: { errors, isValid },
+  } = useForm(
+    { resolver: yupResolver(schema),
+      mode:'onChange',
+    }
+  );
+  console.log(isValid,errors);
+
+  const onSubmit = (data) => console.log(data);
+
   return (
     <>
       <Header />
@@ -36,11 +63,30 @@ const Login = () => {
           <Wrapper>
             <TitleLogin>Faça seu Cadastro</TitleLogin>
             <SubtitleLogin>Faça seu login e make the change.</SubtitleLogin>
-            <form action="">
-              <Input placeholder="Email" type="email" leftIcon={<MdEmail/>} />
-              <Input placeholder="Senha" type="password" leftIcon={<MdLock/>} />
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Input
+                name="email"
+                errorsMessage={errors?.email?.message}
+                control={control}
+                placeholder="Email"
+                type="email"
+                leftIcon={<MdEmail />}
+              />
+              <Input
+                name="password"
+                errorsMessage={errors?.password?.message}
+                control={control}
+                placeholder="Senha"
+                type="password"
+                leftIcon={<MdLock />}
+              />
+            <CustomButton
+              title="Entrar"
+              variant="secondary"
+              onClick={handleClickSignIn}
+              type="submit"
+              />
             </form>
-            <CustomButton title="Entrar" variant="secondary" onClick={handleClickSignIn} />
             <Row>
               <ForgotText>Esqueceu a Senha?</ForgotText>
               <CreateText>Criar conta</CreateText>
