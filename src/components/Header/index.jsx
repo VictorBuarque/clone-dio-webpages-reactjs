@@ -25,6 +25,9 @@ const Header = ({ authentication }) => {
   const handleLogin = () => {
     navigate("/login")
   }
+  const handleRegister = () => {
+    navigate("/register")
+  }
   return (
     <>
       <Wrapper>
@@ -52,6 +55,7 @@ const Header = ({ authentication }) => {
                 <MenuRight href="/">Home</MenuRight>
                 <CustomButton title="Entrar" onClick={handleLogin}></CustomButton>
                 <CustomButton
+                  onClick={handleRegister}
                   title="Cadastrar"
                   variant="primary"
                 ></CustomButton>
