@@ -52,6 +52,9 @@ const Register = () => {
       alert("Error, try again")
     }
   }
+  const handleLogin = () => {
+    navigate("/login")
+  }
   return (
     <>
       <Header />
@@ -105,7 +108,7 @@ const Register = () => {
             <SubtitleRegister>Ao clicar em "criar minha conta grátis", declaro que aceito as Políticas de Privacidade e os Termos de Uso da DIO</SubtitleRegister>
             <Row>
             <Paragraph>Já tenho conta.</Paragraph>
-            <Span variant="secondary">Fazer login</Span>
+            <Span onClick={handleLogin}>Fazer login</Span>
             </Row>
             </Wrapper>
           </Column>
