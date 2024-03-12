@@ -107,10 +107,10 @@ export const Span = styled.span`
     font-weight: 700;
     font-size: 14px;
     line-height: 18px;
+    cursor: pointer;
     ::first-letter {
         text-transform: uppercase;
     }
-
     @media (max-width: 768px) {
         font-size: 12px;
     }
