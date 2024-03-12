@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, {css} from 'styled-components'
 export const ButtonContainer = styled.button`
     background: transparent;
     border-radius: 8px;

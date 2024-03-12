@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
   width: 100%;
@@ -14,7 +14,7 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   max-width: 300px;
-`;
+`
 
 export const Column = styled.div`
   flex: 1;
@@ -36,7 +36,7 @@ export const Title = styled.h2`
     margin-bottom: 20px;
     line-height: 44px;
     self-align: center;
-`;
+`
 
 export const TitleLogin = styled.p`
     font-family: 'Open Sans', sans-serif;
@@ -49,7 +49,7 @@ export const TitleLogin = styled.p`
     text-transform: capitalize;
     text-align: center;
     
-`;
+`
 export const SubtitleLogin = styled.p`
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
@@ -62,7 +62,7 @@ export const SubtitleLogin = styled.p`
       text-transform: uppercase;
   }
   text-align: center;
-`;
+`
 export const ForgotText = styled.p`
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
@@ -70,7 +70,7 @@ export const ForgotText = styled.p`
     font-size: 14px;
     line-height: 18px;
     color: #E5E044;
-`;
+`
 export const CreateText = styled.p`
     font-family: 'Open Sans', sans-serif;
     font-style: normal;
@@ -78,4 +78,5 @@ export const CreateText = styled.p`
     font-size: 14px;
     line-height: 18px;
     color: #E23DD7;
-`;
+    cursor: pointer;
+`

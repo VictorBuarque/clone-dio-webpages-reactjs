@@ -1,9 +1,9 @@
-import { MdEmail, MdLock } from "react-icons/md";
+import { MdEmail, MdLock } from "react-icons/md"
 
-import CustomButton from "../../components/Button/index";
+import CustomButton from "../../components/Button/index"
 
-import { Header } from "../../components/Header/index";
-import { Input } from "../../components/Input/index";
+import { Header } from "../../components/Header/index"
+import { Input } from "../../components/Input/index"
 import {
   Container,
   Column,
@@ -14,34 +14,33 @@ import {
   SubtitleLogin,
   ForgotText,
   CreateText,
-} from "./styles";
+} from "./styles"
 
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup"; //validation
-import * as yup from "yup";
-import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup" //validation
+import * as yup from "yup"
+import { api } from "../../services/api"
 
-const schema = yup
-  .object({
+const schema = yup.object({
     email: yup.string().email("E-mail Invalido").required("Campo Invalido"),
     password: yup.string().min(5, "Senha invalida, minimo 6 caracteres").required("Campo Invalido")
-  }).required();
+  }).required()
 
 const Login = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   
   const {
     control,
     handleSubmit,
     // watch,
     formState: { errors, isValid },
-  } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
-  console.log(isValid, errors);
+  } = useForm({ resolver: yupResolver(schema), mode: "onChange" })
+  console.log(isValid, errors)
   
   const onSubmit = async formData => {
     try{
-      const{ data }= await api.get(`users?email=${formData.email}&senha=${formData.password}`);
+      const{ data }= await api.get(`users?email=${formData.email}&senha=${formData.password}`)
       if(data.length === 1){
        navigate('/feed')
       } else {
@@ -50,7 +49,10 @@ const Login = () => {
     } catch {
       alert("Error, try again")
     }
-  };
+  }
+  const handleRegister = () => {
+    navigate('/register')
+  }
   return (
     <>
       <Header />
@@ -91,12 +93,12 @@ const Login = () => {
             </form>
             <Row>
               <ForgotText>Esqueceu a Senha?</ForgotText>
-              <CreateText>Criar conta</CreateText>
+              <CreateText onClick={handleRegister}>Criar conta</CreateText>
             </Row>
           </Wrapper>
         </Column>
       </Container>
     </>
-  );
-};
-export default Login;
+  )
+}
+export default Login
