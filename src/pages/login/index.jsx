@@ -18,37 +18,39 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup" //validation
-import * as yup from "yup"
-
+import { yupResolver } from "@hookform/resolvers/yup"; //validation
+import * as yup from "yup";
+import { api } from "../../services/api";
 
 const schema = yup
   .object({
-    email: yup.string().email('E-mail Invalido').required('Campo Invalido'),
-    password: yup.string().min(6,'Senha invalida, minimo 7 caracteres').required('Campo Invalido'),
-  })
-  .required()
+    email: yup.string().email("E-mail Invalido").required("Campo Invalido"),
+    password: yup.string().min(5, "Senha invalida, minimo 6 caracteres").required("Campo Invalido")
+  }).required();
 
 const Login = () => {
   const navigate = useNavigate();
-  const handleClickSignIn = () => {
-    navigate("/feed");
-  };
-
+  
   const {
     control,
     handleSubmit,
     // watch,
     formState: { errors, isValid },
-  } = useForm(
-    { resolver: yupResolver(schema),
-      mode:'onChange',
+  } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
+  console.log(isValid, errors);
+  
+  const onSubmit = async formData => {
+    try{
+      const{ data }= await api.get(`users?email=${formData.email}&senha=${formData.password}`);
+      if(data.length === 1){
+       navigate('/feed')
+      } else {
+        alert('Wrong e-mail or passaword!')
+      }
+    } catch {
+      alert("Error, try again")
     }
-  );
-  console.log(isValid,errors);
-
-  const onSubmit = (data) => console.log(data);
-
+  };
   return (
     <>
       <Header />
@@ -80,11 +82,11 @@ const Login = () => {
                 type="password"
                 leftIcon={<MdLock />}
               />
-            <CustomButton
-              title="Entrar"
-              variant="secondary"
-              onClick={handleClickSignIn}
-              type="submit"
+              <CustomButton
+                title="Entrar"
+                variant="secondary"
+                //onClick={onSubmitButtonClick}
+                type="submit"
               />
             </form>
             <Row>
