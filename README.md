@@ -1,7 +1,9 @@
 # Clone of DIO.me Webpages
 
-This is a clone project of DIO web page, using ReactJS, ViteJS and Styled Components.<br/>
-Have 3 pages builded in this project: homepage, login page and feed page.
+This is a clone project of DIO web page, using ReactJS, ViteJS and Styled Components, axios and json-server.<br/>
+Have 4 pages builded in this project: homepage, login page, register page and feed page.
+
+The validation of login page use axios and json-server for simulation of api data collection.
 
 
 # React + Vite
