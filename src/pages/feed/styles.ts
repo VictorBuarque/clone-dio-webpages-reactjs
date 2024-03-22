@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IColumnProps } from "./types";
 
 export const Container = styled.div`
   width: 100%;
@@ -33,7 +34,7 @@ export const TitleHighLight = styled.h3`
 `;
 
 
-export const Column = styled.div`
+export const Column = styled.div<IColumnProps>`
   flex: ${({flex})=>flex}; // when we pass properties to flex, we want insert weight on component of flex box.
   padding-right:24px;      // how higher is the weight bigger is the size of the flex box
 `

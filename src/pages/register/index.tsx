@@ -21,6 +21,8 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 
+import { IRegisterFormDataProps } from './types'
+
 const schema = yup.object({
     name: yup.string().min(3, "Nome inválido, mínimo 3 caracteres").required("Campo obrigatório"),
     email: yup.string().email("E-mail inválido").required("Campo obrigatório"),
@@ -36,10 +38,10 @@ const Register = () => {
     handleSubmit,
     // watch,
     formState: { errors, isValid },
-  } = useForm({ resolver: yupResolver(schema), mode: "onChange" })
+  } = useForm <IRegisterFormDataProps> ({ resolver: yupResolver(schema), mode: "onChange" })
   console.log(isValid, errors)
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData: IRegisterFormDataProps) => {
     try {
       const response = await axios.post('/users', formData)
       if (response.status === 201) {
@@ -85,7 +87,7 @@ const Register = () => {
               errorsMessage={errors?.email?.message}
               control={control}
               placeholder="Email"
-              type="email"
+              type="current-email"
               leftIcon={<MdEmail />}
             />
             <Input
@@ -93,7 +95,7 @@ const Register = () => {
               errorsMessage={errors?.password?.message}
               control={control}
               placeholder="Senha"
-              type="password"
+              type="current-password"
               leftIcon={<MdLock />}
             />
             </form>

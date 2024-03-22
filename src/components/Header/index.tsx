@@ -15,8 +15,9 @@ import brazil from "../../assets/brazil-flag.png";
 import eua from "../../assets/eua-flag.png";
 import spain from "../../assets/spain-flag.png";
 import { useNavigate } from "react-router-dom";
+import { IHeaderProps } from "./types";
 
-const Header = ({ authentication }) => {
+const Header = ({ authentication }:IHeaderProps) => {
   const navigate = useNavigate();
 
   const handleClickNavigate = () => {

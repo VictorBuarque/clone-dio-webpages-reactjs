@@ -21,6 +21,7 @@ import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup" //validation
 import * as yup from "yup"
 import { api } from "../../services/api"
+import { IFormDataProps } from "./types"
 
 const schema = yup.object({
     email: yup.string().email("E-mail Invalido").required("Campo Invalido"),
@@ -35,10 +36,10 @@ const Login = () => {
     handleSubmit,
     // watch,
     formState: { errors, isValid },
-  } = useForm({ resolver: yupResolver(schema), mode: "onChange" })
+  } = useForm <IFormDataProps> ({ resolver: yupResolver(schema), mode: "onChange" })
   console.log(isValid, errors)
   
-  const onSubmit = async formData => {
+  const onSubmit = async (formData : IFormDataProps )=> {
     try{
       const{ data }= await api.get(`users?email=${formData.email}&senha=${formData.password}`)
       if(data.length === 1){
@@ -73,7 +74,7 @@ const Login = () => {
                 errorsMessage={errors?.email?.message}
                 control={control}
                 placeholder="Email"
-                type="email"
+                type="current-email"
                 leftIcon={<MdEmail />}
               />
               <Input
@@ -81,7 +82,7 @@ const Login = () => {
                 errorsMessage={errors?.password?.message}
                 control={control}
                 placeholder="Senha"
-                type="password"
+                type="current-password"
                 leftIcon={<MdLock />}
               />
               <CustomButton

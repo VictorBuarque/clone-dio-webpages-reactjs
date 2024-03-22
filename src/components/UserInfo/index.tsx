@@ -5,9 +5,9 @@ import {
    Progress,
   } from "./styles";
 
-import PropTypes from 'prop-types';  
+import { IUserInfoProps } from "./types";
 
-const UserInfo = ({name, image, percentual}) => {
+const UserInfo = ({name, image, percentual} : IUserInfoProps) => {
   return (
     <Container>
         <UserPicture src={image}/>
@@ -19,9 +19,4 @@ const UserInfo = ({name, image, percentual}) => {
   )
 }
 
-UserInfo.propTypes = {
-    image: PropTypes.node, 
-    name: PropTypes.string,
-    percentual: PropTypes.number,
-  };
 export {UserInfo}
