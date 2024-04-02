@@ -1,5 +1,3 @@
-// import { Link } from 'react-router-dom';
-// import CustomButton from '../../components/Button/index';
 import { Header } from '../../components/Header/index';
 import { Card } from '../../components/Card/index';
 import { UserInfo } from '../../components/UserInfo';
@@ -8,7 +6,7 @@ import { Container , Column, Title, TitleHighLight} from './styles';
 function Feed() {
   return (
     <>
-      <Header authentication={true}/>
+      <Header />
       <Container>
         <Column flex={3}>
           <Title>Feed</Title>
