@@ -5,8 +5,8 @@ Have 4 pages builded in this project: homepage, login page, register page and fe
 
 The validation of login page use axios and json-server for simulation of api data collection.
 
-NPM I for install all packages
-NPM RUN API to run the fake server of api.
+## NPM I for install all packages <br/>
+## NPM RUN API to run the fake server of api.
 
 If you have problems in validation test, maybe u should replace the localhost on services/api.ts.
 
