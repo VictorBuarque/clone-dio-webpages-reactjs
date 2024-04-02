@@ -15,27 +15,36 @@ import brazil from "../../assets/brazil-flag.png";
 import eua from "../../assets/eua-flag.png";
 import spain from "../../assets/spain-flag.png";
 import { useNavigate } from "react-router-dom";
-import { IHeaderProps } from "./types";
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth";
 
-const Header = ({ authentication }:IHeaderProps) => {
+const Header = () => {
+  const { user, handleSignOut } = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const handleClickNavigate = () => {
     navigate("/");
   };
   const handleLogin = () => {
-    navigate("/login")
-  }
+    navigate("/login");
+  };
   const handleRegister = () => {
-    navigate("/register")
-  }
+    navigate("/register");
+  };
+ 
+
   return (
     <>
       <Wrapper>
         <Container>
           <Row>
-            <img src={logo} alt="Logo da Empresa"></img>
-            {authentication ? (
+            <img
+              src={logo}
+              alt="Logo da Empresa"
+              onClick={handleClickNavigate}
+            />
+            {user.id ? (
               <>
                 <BuscarInputContainer>
                   <Input type="text" placeholder="Buscar.." />
@@ -46,15 +55,21 @@ const Header = ({ authentication }:IHeaderProps) => {
             ) : null}
           </Row>
           <Row>
-            {authentication ? (
+            {user.id ? (
               <>
-              <UserPicture src="https://avatars.githubusercontent.com/u/114040791?s=400&u=469e400f38ea7024ac51746802037465d95f4244&v=4" />
-              <CustomButton title="Sair" onClick={handleClickNavigate}></CustomButton>
+                <UserPicture src="https://avatars.githubusercontent.com/u/114040791?s=400&u=469e400f38ea7024ac51746802037465d95f4244&v=4" />
+                <CustomButton
+                  title="Sair"
+                  onClick={handleSignOut}
+                ></CustomButton>
               </>
             ) : (
               <>
-                <MenuRight href="/">Home</MenuRight>
-                <CustomButton title="Entrar" onClick={handleLogin}></CustomButton>
+                <MenuRight onClick={handleClickNavigate}>Home</MenuRight>
+                <CustomButton
+                  title="Entrar"
+                  onClick={handleLogin}
+                ></CustomButton>
                 <CustomButton
                   onClick={handleRegister}
                   title="Cadastrar"
