@@ -1,9 +1,17 @@
-import { MdEmail, MdLock } from "react-icons/md"
+import { MdEmail, MdLock } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useContext } from "react";
 
-import CustomButton from "../../components/Button/index"
+import { yupResolver } from "@hookform/resolvers/yup"; //validation
+import * as yup from "yup";
 
-import { Header } from "../../components/Header/index"
-import { Input } from "../../components/Input/index"
+import { IFormDataProps } from "./types";
+import { AuthContext } from "../../context/auth";
+
+import CustomButton from "../../components/Button/index";
+import { Header } from "../../components/Header/index";
+import { Input } from "../../components/Input/index";
 import {
   Container,
   Column,
@@ -14,46 +22,41 @@ import {
   SubtitleLogin,
   ForgotText,
   CreateText,
-} from "./styles"
+} from "./styles";
 
-import { useNavigate } from "react-router-dom"
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup" //validation
-import * as yup from "yup"
-import { api } from "../../services/api"
-import { IFormDataProps } from "./types"
-
-const schema = yup.object({
+const schema = yup
+  .object({
     email: yup.string().email("E-mail Invalido").required("Campo Invalido"),
-    password: yup.string().min(5, "Senha invalida, minimo 6 caracteres").required("Campo Invalido")
-  }).required()
+    password: yup
+      .string()
+      .min(5, "Senha invalida, minimo 6 caracteres")
+      .required("Campo Invalido"),
+  })
+  .required();
 
 const Login = () => {
-  const navigate = useNavigate()
-  
+  const { handleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const {
     control,
     handleSubmit,
     // watch,
     formState: { errors, isValid },
-  } = useForm <IFormDataProps> ({ resolver: yupResolver(schema), mode: "onChange" })
-  console.log(isValid, errors)
-  
-  const onSubmit = async (formData : IFormDataProps )=> {
-    try{
-      const{ data }= await api.get(`users?email=${formData.email}&senha=${formData.password}`)
-      if(data.length === 1){
-       navigate('/feed')
-      } else {
-        alert('Wrong e-mail or passaword!')
-      }
-    } catch {
-      alert("Error, try again")
-    }
-  }
+  } = useForm<IFormDataProps>({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
+  console.log(isValid, errors);
+
+  const onSubmit = async (formData: IFormDataProps) => {
+    handleLogin(formData);
+  };
+
   const handleRegister = () => {
-    navigate('/register')
-  }
+    navigate("/register");
+  };
+
   return (
     <>
       <Header />
@@ -82,13 +85,12 @@ const Login = () => {
                 errorsMessage={errors?.password?.message}
                 control={control}
                 placeholder="Senha"
-                type="current-password"
+                type="password"
                 leftIcon={<MdLock />}
               />
               <CustomButton
                 title="Entrar"
                 variant="secondary"
-                //onClick={onSubmitButtonClick}
                 type="submit"
               />
             </form>
@@ -100,6 +102,6 @@ const Login = () => {
         </Column>
       </Container>
     </>
-  )
-}
-export default Login
+  );
+};
+export default Login;
