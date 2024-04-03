@@ -1,13 +1,11 @@
 import { MdEmail, MdLock } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
+import { useAuth } from "../../hooks/useAuth";
 
 import { yupResolver } from "@hookform/resolvers/yup"; //validation
 import * as yup from "yup";
-
 import { IFormDataProps } from "./types";
-import { AuthContext } from "../../context/auth";
 
 import CustomButton from "../../components/Button/index";
 import { Header } from "../../components/Header/index";
@@ -24,6 +22,7 @@ import {
   CreateText,
 } from "./styles";
 
+
 const schema = yup
   .object({
     email: yup.string().email("E-mail Invalido").required("Campo Invalido"),
@@ -35,19 +34,18 @@ const schema = yup
   .required();
 
 const Login = () => {
-  const { handleLogin } = useContext(AuthContext);
+  const { handleLogin } = useAuth();
   const navigate = useNavigate();
 
   const {
     control,
     handleSubmit,
     // watch,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<IFormDataProps>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
-  console.log(isValid, errors);
 
   const onSubmit = async (formData: IFormDataProps) => {
     handleLogin(formData);
@@ -88,11 +86,7 @@ const Login = () => {
                 type="password"
                 leftIcon={<MdLock />}
               />
-              <CustomButton
-                title="Entrar"
-                variant="secondary"
-                type="submit"
-              />
+              <CustomButton title="Entrar" variant="secondary" type="submit" />
             </form>
             <Row>
               <ForgotText>Esqueceu a Senha?</ForgotText>

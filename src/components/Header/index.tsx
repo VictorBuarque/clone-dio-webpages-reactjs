@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 import {
   Container,
   Wrapper,
@@ -14,12 +16,9 @@ import logo from "../../assets/logo-dio.png";
 import brazil from "../../assets/brazil-flag.png";
 import eua from "../../assets/eua-flag.png";
 import spain from "../../assets/spain-flag.png";
-import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../context/auth";
 
 const Header = () => {
-  const { user, handleSignOut } = useContext(AuthContext);
+  const { user, handleSignOut } = useAuth();
 
   const navigate = useNavigate();
 
